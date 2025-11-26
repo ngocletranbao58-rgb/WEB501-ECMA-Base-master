@@ -1,0 +1,118 @@
+{
+    "tours": [
+        {
+            "id": "1",
+            "name": "Hà Nội - Sapa 3N2D",
+            "destination": "Sapa",
+            "duration": "3 ngày 2 đêm",
+            "price": 2500000,
+            "image": "https://picsum.photos/400/300?random=1",
+            "description": "Khám phá Sapa với những ruộng bậc thang tuyệt đẹp",
+            "available": 15
+        },
+        {
+            "id": "2",
+            "name": "Hạ Long - Cát Bà 2N1D",
+            "destination": "Hạ Long",
+            "duration": "2 ngày 1 đêm",
+            "price": 1800000,
+            "image": "https://picsum.photos/400/300?random=2",
+            "description": "Du thuyền vịnh Hạ Long - Kỳ quan thiên nhiên thế giới",
+            "available": 20
+        },
+        {
+            "id": "3",
+            "name": "Đà Lạt 4N3D",
+            "destination": "Đà Lạt",
+            "duration": "4 ngày 3 đêm",
+            "price": 3200000,
+            "image": "https://picsum.photos/400/300?random=3",
+            "description": "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm",
+            "available": 12
+        },
+        {
+            "id": "4",
+            "name": "Huế - Hội An 3N2D",
+            "destination": "Huế",
+            "duration": "3 ngày 2 đêm",
+            "price": 2700000,
+            "image": "https://picsum.photos/400/300?random=4",
+            "description": "Khám phá cố đô Huế và phố cổ Hội An",
+            "available": 18
+        },
+        {
+            "id": "5",
+            "name": "Phú Quốc 5N4D",
+            "destination": "Phú Quốc",
+            "duration": "5 ngày 4 đêm",
+            "price": 4500000,
+            "image": "https://picsum.photos/400/300?random=5",
+            "description": "Thiên đường đảo ngọc Phú Quốc với bãi biển tuyệt đẹp",
+            "available": 10
+        },
+        {
+            "id": "6",
+            "name": "Nha Trang 4N3D",
+            "destination": "Nha Trang",
+            "duration": "4 ngày 3 đêm",
+            "price": 3500000,
+            "image": "https://picsum.photos/400/300?random=6",
+            "description": "Thành phố biển Nha Trang với bãi cát trắng mịn",
+            "available": 14
+        },
+        {
+            "id": "7",
+            "name": "Hà Giang 3N2D",
+            "destination": "Hà Giang",
+            "duration": "3 ngày 2 đêm",
+            "price": 2800000,
+            "image": "https://picsum.photos/400/300?random=7",
+            "description": "Chinh phục cao nguyên đá Hà Giang và những cung đường đẹp",
+            "available": 16
+        }
+    ],
+    "destinations": [
+        {
+            "id": "1",
+            "name": "Sapa",
+            "icon": "🏔️",
+            "description": "Thiên đường núi rừng Tây Bắc"
+        },
+        {
+            "id": "2",
+            "name": "Hạ Long",
+            "icon": "🌊",
+            "description": "Kỳ quan thiên nhiên thế giới"
+        },
+        {
+            "id": "3",
+            "name": "Đà Lạt",
+            "icon": "🌺",
+            "description": "Thành phố ngàn hoa"
+        },
+        {
+            "id": "4",
+            "name": "Huế",
+            "icon": "🏯",
+            "description": "Cố đô ngàn năm lịch sử"
+        },
+        {
+            "id": "5",
+            "name": "Phú Quốc",
+            "icon": "🏝️",
+            "description": "Đảo ngọc nổi tiếng với bãi biển đẹp"
+        },
+        {
+            "id": "6",
+            "name": "Nha Trang",
+            "icon": "🌊",
+            "description": "Thành phố biển đẹp và nổi tiếng"
+        },
+        {
+            "id": "7",
+            "name": "Hà Giang",
+            "icon": "⛰️",
+            "description": "Cao nguyên đá hùng vĩ"
+        }
+    ]
+}
