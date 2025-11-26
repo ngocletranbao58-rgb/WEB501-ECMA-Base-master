@@ -1,7 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import { Routes, Route, Link } from "react-router-dom";
 import List from "./pages/ListPage";
-import Add from "./pages/Add";
+import Add from "./pages/AddPage";
 
 function Home() {
   return (
