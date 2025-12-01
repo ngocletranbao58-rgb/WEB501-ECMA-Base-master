@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function ListPage() {
@@ -44,36 +45,55 @@ function ListPage() {
         <table className="w-full border border-gray-300 rounded-lg">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-4 py-2 border border-gray-300">#</th>
-              <th className="px-4 py-2 border border-gray-300">Ảnh</th>
-              <th className="px-4 py-2 border border-gray-300">Tên tour</th>
-              <th className="px-4 py-2 border border-gray-300">Điểm đến</th>
-              <th className="px-4 py-2 border border-gray-300">Thời gian</th>
-              <th className="px-4 py-2 border border-gray-300">Giá (VND)</th>
-              <th className="px-4 py-2 border border-gray-300">Còn trống</th>
-              <th className="px-4 py-2 border border-gray-300">Action</th>
+              <th className="px-4 py-2 border">#</th>
+              <th className="px-4 py-2 border">Ảnh</th>
+              <th className="px-4 py-2 border">Tên tour</th>
+              <th className="px-4 py-2 border">Điểm đến</th>
+              <th className="px-4 py-2 border">Thời gian</th>
+              <th className="px-4 py-2 border">Giá (VND)</th>
+              <th className="px-4 py-2 border">Còn trống</th>
+              <th className="px-4 py-2 border">Action</th>
             </tr>
           </thead>
 
           <tbody>
             {tours.map((tour, index) => (
-              <tr key={tour.id} className="hover:bg-gray-50">
-                <td className="px-4 py-2 border border-gray-300">{index + 1}</td>
-                <td className="px-4 py-2 border border-gray-300">
-                  <img src={tour.image} alt={tour.name} className="w-20 h-16 object-cover rounded" />
+              <tr key={tour.id} className="hover:bg-gray-50 transition">
+                <td className="px-4 py-2 border">{index + 1}</td>
+
+                <td className="px-4 py-2 border">
+                  <img
+                    src={tour.image}
+                    alt={tour.name}
+                    className="w-20 h-16 object-cover rounded"
+                  />
                 </td>
-                <td className="px-4 py-2 border border-gray-300">{tour.name}</td>
-                <td className="px-4 py-2 border border-gray-300">{tour.destination}</td>
-                <td className="px-4 py-2 border border-gray-300">{tour.duration}</td>
-                <td className="px-4 py-2 border border-gray-300">{tour.price.toLocaleString()}</td>
-                <td className="px-4 py-2 border border-gray-300">{tour.available}</td>
-                <td className="px-4 py-2 border border-gray-300">
-                  <button
-                    onClick={() => handleDelete(tour.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                  >
-                    Xóa
-                  </button>
+
+                <td className="px-4 py-2 border">{tour.name}</td>
+                <td className="px-4 py-2 border">{tour.destination}</td>
+                <td className="px-4 py-2 border">{tour.duration}</td>
+                <td className="px-4 py-2 border">{tour.price.toLocaleString()}</td>
+                <td className="px-4 py-2 border">{tour.available}</td>
+
+                <td className="px-4 py-2 border">
+                  <div className="flex items-center gap-2">
+
+                    {/* Nút Sửa */}
+                    <Link
+                      to={`/edit/${tour.id}`}
+                      className="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600 transition"
+                    >
+                      Sửa
+                    </Link>
+
+                    {/* Nút Xóa */}
+                    <button
+                      onClick={() => handleDelete(tour.id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
+                    >
+                      Xóa
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
