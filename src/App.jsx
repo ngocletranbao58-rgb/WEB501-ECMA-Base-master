@@ -3,6 +3,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import List from "./pages/ListPage";
 import Add from "./pages/AddPage";
 import EditPage from "./pages/EditPage";
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 function Home() {
   return (
@@ -14,26 +16,43 @@ function Home() {
 }
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <>
-      {/* NAVBAR */}
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="text-xl font-semibold">
             <strong>WEB501 App</strong>
           </Link>
 
-          {/* Menu desktop */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="hover:text-gray-200">Trang chủ</Link>
             <Link to="/list" className="hover:text-gray-200">Danh sách</Link>
             <Link to="/add" className="hover:text-gray-200">Thêm mới</Link>
           </div>
 
-          {/* Right menu desktop */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="#" className="hover:text-gray-200">Đăng nhập</Link>
-            <Link to="#" className="hover:text-gray-200">Đăng ký</Link>
+            {user ? (
+              <>
+                <span>Xin chào, <strong>{user.name}</strong></span>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("token");
+                    window.location.href = "/login";
+                  }}
+                  className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+                >
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="hover:text-gray-200">Đăng nhập</Link>
+                <Link to="/register" className="hover:text-gray-200">Đăng ký</Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -45,6 +64,8 @@ function App() {
           <Route path="/list" element={<List />} />
           <Route path="/add" element={<Add />} />
           <Route path="/edit/:id" element={<EditPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
 
