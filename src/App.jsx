@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
+
 import List from "./pages/ListPage";
 import Add from "./pages/AddPage";
 import EditPage from "./pages/EditPage";
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function Home() {
   return (
@@ -15,15 +17,31 @@ function Home() {
   );
 }
 
+function RequireAuth({ children }) {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/login" replace />;
+  return children;
+}
+
 function App() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [auth, setAuth] = useState({
+    token: localStorage.getItem("token"),
+    user: JSON.parse(localStorage.getItem("user")),
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setAuth({ token: null, user: null });
+  };
 
   return (
     <>
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="text-xl font-semibold">
-            <strong>WEB501 App</strong>
+
+          <Link to="/" className="text-xl font-bold">
+            WEB501 App
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -33,15 +51,11 @@ function App() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            {user ? (
+            {auth.token ? (
               <>
-                <span>Xin chào, <strong>{user.name}</strong></span>
+                <span>Xin chào, <strong>{auth.user?.email}</strong></span>
                 <button
-                  onClick={() => {
-                    localStorage.removeItem("user");
-                    localStorage.removeItem("token");
-                    window.location.href = "/login";
-                  }}
+                  onClick={handleLogout}
                   className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
                 >
                   Đăng xuất
@@ -54,18 +68,20 @@ function App() {
               </>
             )}
           </div>
+
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
       <div className="max-w-6xl mx-auto mt-10 px-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/add" element={<Add />} />
-          <Route path="/edit/:id" element={<EditPage />} />
+
+          <Route path="/list" element={<RequireAuth><List /></RequireAuth>} />
+          <Route path="/add" element={<RequireAuth><Add /></RequireAuth>} />
+          <Route path="/edit/:id" element={<RequireAuth><EditPage /></RequireAuth>} />
+
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage setAuth={setAuth} />} />
         </Routes>
       </div>
 
